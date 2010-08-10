@@ -6,7 +6,7 @@ unless(defined?($__lockfile__) or defined?(Lockfile))
 
   class Lockfile
 #--{{{
-    VERSION = '1.4.3'
+    VERSION = '1.4.4'
     def version() VERSION end
 
     class LockError < StandardError; end
@@ -472,7 +472,7 @@ unless(defined?($__lockfile__) or defined?(Lockfile))
 #--{{{
       lock_id = {}
       kv = %r/([^:]+):(.*)/o
-      buf.each do |line|
+      buf.split($/) do |line|
         m = kv.match line
         k, v = m[1], m[2]
         next unless m and k and v 
